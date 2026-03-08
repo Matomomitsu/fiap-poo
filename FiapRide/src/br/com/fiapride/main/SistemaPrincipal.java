@@ -2,6 +2,8 @@ package br.com.fiapride.main;
 
 // Importamos a classe Passageiro para que o sistema a reconheça
 import br.com.fiapride.model.Passageiro;
+import br.com.fiapride.model.Carro;
+import br.com.fiapride.enums.MarchaCarro;
 
 public class SistemaPrincipal {
 
@@ -19,13 +21,23 @@ public class SistemaPrincipal {
         passageiro2.adicionarSaldo(12.5);
 
         System.out.println("--- Sistema FiapRide ---");
-        System.out.println("Passageiro: " + passageiro1.nome + " | Saldo: R$ " + passageiro1.saldo + " | CPF: " + passageiro1.cpf);
-        System.out.println("Passageiro: " + passageiro2.nome + " | Saldo: R$ " + passageiro2.saldo + " | CPF: " + passageiro2.cpf);
-        
+        System.out.println(
+                "Passageiro: " + passageiro1.nome + " | Saldo: R$ " + passageiro1.saldo + " | CPF: " + passageiro1.cpf);
+        System.out.println(
+                "Passageiro: " + passageiro2.nome + " | Saldo: R$ " + passageiro2.saldo + " | CPF: " + passageiro2.cpf);
+
         System.out.println("Pagando viagem do passageiro 1");
         passageiro1.pagarViagem(20);
         System.out.println("Pagando viagem do passageiro 2");
         passageiro2.pagarViagem(20);
 
+        Carro carro = new Carro("Fiat", "Vermelho");
+        System.out.println("Carro: " + carro.marca + " | Cor: " + carro.cor + " | Marcha: " + carro.marcha);
+        carro.mudarMarcha(MarchaCarro.D);
+        System.out.println("Carro: " + carro.marca + " | Cor: " + carro.cor + " | Marcha: " + carro.marcha);
+        carro.acelerar(50.0);
+        System.out.println("Velocidade após acelerar: " + carro.velocidade + " km/h" + " | Freio acionado: " + carro.freioAcionado);
+        carro.frear();
+        System.out.println("Velocidade após frear: " + carro.velocidade + " km/h" + " | Freio acionado: " + carro.freioAcionado);
     }
 }

@@ -1,43 +1,36 @@
 package br.com.fiapride.main;
 
-// Importamos a classe Passageiro para que o sistema a reconheça
 import br.com.fiapride.model.Passageiro;
-import br.com.fiapride.model.Carro;
-import br.com.fiapride.enums.MarchaCarro;
 
 public class SistemaPrincipal {
 
     public static void main(String[] args) {
-        // INSTANCIAÇÃO
-        // O comando 'new' aloca memória para um novo objeto.
-        // Criando o primeiro passageiro (Objeto 1)
-        Passageiro passageiro1 = new Passageiro("Ana Silva", "222");
-        System.out.println("Regarga passageiro 1");
+
+        System.out.println("--- Iniciando o Sistema FiapRide --- \n");
+
+        // INSTANCIAÇÃO (Usando o Construtor!)
+        // Não precisamos mais de passageiro.nome = "Ana", já passamos tudo de uma vez.
+        Passageiro passageiro1 = new Passageiro("Ana Silva", "222.222.222-22");
+        System.out.println(">>> Recarga Passageiro 1:");
         passageiro1.adicionarSaldo(50.0);
 
-        // Criando o segundo passageiro (Objeto 2)
-        Passageiro passageiro2 = new Passageiro("Carlos Souza", "333");
-        System.out.println("Regarga passageiro 2");
+        Passageiro passageiro2 = new Passageiro("Carlos Souza", "333.333.333-33");
+        System.out.println(">>> Recarga Passageiro 2:");
         passageiro2.adicionarSaldo(12.5);
 
-        System.out.println("--- Sistema FiapRide ---");
-        System.out.println(
-                "Passageiro: " + passageiro1.nome + " | Saldo: R$ " + passageiro1.saldo + " | CPF: " + passageiro1.cpf);
-        System.out.println(
-                "Passageiro: " + passageiro2.nome + " | Saldo: R$ " + passageiro2.saldo + " | CPF: " + passageiro2.cpf);
+        System.out.println("\n--- Status dos Passageiros ---");
+        // Lendo os dados com os Getters:
+        System.out.println("Passageiro: " + passageiro1.getNome() + " | Saldo: R$ " + passageiro1.getSaldo() + " | CPF: " + passageiro1.getCpf());
+        System.out.println("Passageiro: " + passageiro2.getNome() + " | Saldo: R$ " + passageiro2.getSaldo() + " | CPF: " + passageiro2.getCpf());
 
-        System.out.println("Pagando viagem do passageiro 1");
-        passageiro1.pagarViagem(20);
-        System.out.println("Pagando viagem do passageiro 2");
-        passageiro2.pagarViagem(20);
+        System.out.println("\n--- Realizando Viagens ---");
+        System.out.println("Pagando viagem do passageiro 1 (Ana)...");
+        passageiro1.pagarViagem(20.0); // Ana tem 50, vai sobrar 30.
 
-        Carro carro = new Carro("Fiat", "Vermelho");
-        System.out.println("Carro: " + carro.marca + " | Cor: " + carro.cor + " | Marcha: " + carro.marcha);
-        carro.mudarMarcha(MarchaCarro.D);
-        System.out.println("Carro: " + carro.marca + " | Cor: " + carro.cor + " | Marcha: " + carro.marcha);
-        carro.acelerar(50.0);
-        System.out.println("Velocidade após acelerar: " + carro.velocidade + " km/h" + " | Freio acionado: " + carro.freioAcionado);
-        carro.frear();
-        System.out.println("Velocidade após frear: " + carro.velocidade + " km/h" + " | Freio acionado: " + carro.freioAcionado);
+        System.out.println("\nPagando viagem do passageiro 2 (Carlos)...");
+        passageiro2.pagarViagem(20.0); // Carlos tem 12.5. O sistema DEVE bloquear!
+
+        // Tente hackear o sistema descomentando a linha abaixo:
+        // passageiro1.saldo = 999999.0; // O Java vai exibir erro vermelho! A proteção funcionou!
     }
 }

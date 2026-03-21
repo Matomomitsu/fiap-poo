@@ -5,9 +5,9 @@ import br.com.fiapride.enums.MarchaCarro;
 public class Carro {
     public String marca;
     public String cor;
-    public double velocidade;
-    public boolean freioAcionado;
-    public MarchaCarro marcha;
+    private double velocidade;
+    private boolean freioAcionado;
+    private MarchaCarro marcha;
 
     public Carro(String marca, String cor) {
         this.marca = marca;
@@ -15,6 +15,33 @@ public class Carro {
         this.velocidade = 0.0;
         this.freioAcionado = false;
         this.marcha = MarchaCarro.P;
+    }
+
+    public double getVelocidade(){
+        return (this.velocidade);
+    }
+
+    public void setVelocidade(double velocidade){
+        if ((getMarchaCarro() == MarchaCarro.P || getMarchaCarro() == MarchaCarro.N) && velocidade > 0){
+            System.out.println("Não é possível aumentar a velocidade se está na marcha" + this.marcha);
+        }
+
+        this.velocidade = velocidade;
+    }
+
+    public MarchaCarro getMarchaCarro(){
+        return (this.marcha);
+    }
+
+    public boolean getFreioAcionado() {return (this.freioAcionado);}
+
+    public void setMarchaCarro(MarchaCarro marcha)
+    {
+        if (getVelocidade() > 0){
+            System.out.println("Não é possível mudar de marcha enquanto sua velocidade for maior que 0");
+        }
+
+        this.marcha = marcha;
     }
 
     public void acelerar(double velocidade) {
